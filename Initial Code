@@ -1,0 +1,112 @@
+int bstate1 = 0;
+int bstate2 = 0;
+int bstate3 = 0;
+int bstate4 = 0;
+int negitive_dc = 6;
+int positive_dc = 5;
+int negitive_dc2 = 11;
+int positive_dc2 = 10;
+int button1 = 7;
+int button2 = 4;
+int button3 = 8;
+int button4 = 12;
+
+void setup ()
+{
+  pinMode (negitive_dc,OUTPUT);
+  pinMode (positive_dc,OUTPUT);
+  pinMode (negitive_dc2,OUTPUT);
+  pinMode (positive_dc2,OUTPUT);
+  pinMode (button1,INPUT);
+  pinMode (button2,INPUT);
+  pinMode (button3,INPUT);
+  pinMode (button4,INPUT);
+}
+
+void loop ()
+{
+  bstate1 = digitalRead (button1);
+  bstate2 = digitalRead (button2);
+  bstate3 = digitalRead (button3);
+  bstate4 = digitalRead (button4);
+  //forwards
+  if (bstate1 == HIGH)
+  {
+    digitalWrite (positive_dc,HIGH);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,HIGH);
+    digitalWrite (negitive_dc2,LOW);
+  	delay(2000);
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  else
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  //reverse
+  if (bstate2 == HIGH)
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,HIGH);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,HIGH);
+ 	delay(2000);
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  else
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  //left
+  if (bstate4 == HIGH)
+  {
+    digitalWrite (positive_dc,HIGH);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);//change to high if you want to on the spot turn
+  	delay(2000);
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  else
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  //right
+  if (bstate3 == HIGH)
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);//change to high if you want to on the spot turn
+    digitalWrite (positive_dc2,HIGH);
+    digitalWrite (negitive_dc2,LOW);
+  	delay(2000);
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+  else
+  {
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+}
