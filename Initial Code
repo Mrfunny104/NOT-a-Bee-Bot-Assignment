@@ -11,8 +11,18 @@ int button2 = 4;
 int button3 = 8;
 int button4 = 12;
 
+
+long duration; 
+
+int distance;
+
+
+
 void setup ()
 {
+  pinMode(2, INPUT); //echo
+  pinMode(3, OUTPUT); //trigger
+  
   pinMode (negitive_dc,OUTPUT);
   pinMode (positive_dc,OUTPUT);
   pinMode (negitive_dc2,OUTPUT);
@@ -21,32 +31,62 @@ void setup ()
   pinMode (button2,INPUT);
   pinMode (button3,INPUT);
   pinMode (button4,INPUT);
+  
 }
 
 void loop ()
 {
+  
+  
   bstate1 = digitalRead (button1);
   bstate2 = digitalRead (button2);
   bstate3 = digitalRead (button3);
   bstate4 = digitalRead (button4);
-  //forwards
-  if (bstate1 == HIGH)
-  {
-    digitalWrite (positive_dc,HIGH);
-    digitalWrite (negitive_dc,LOW);
-    digitalWrite (positive_dc2,HIGH);
-    digitalWrite (negitive_dc2,LOW);
-  	delay(2000);
+
+  
+  
+  //trigger code
+  digitalWrite(3, LOW); 
+  delay(0.2); 
+ 
+  digitalWrite(3, HIGH); 
+  delay(0.10); 
+ 
+  digitalWrite(3, LOW); 
+  
+  //echo code
+  duration = pulseIn(2, HIGH); 
+  
+  distance = (duration*0.034)/2;
+  
+  if (distance <=15&& distance >=0) {
     digitalWrite (positive_dc,LOW);
     digitalWrite (negitive_dc,LOW);
   	digitalWrite (positive_dc2,LOW);
     digitalWrite (negitive_dc2,LOW);
   }
-  else
+
+
+  
+  //forwards
+  if (bstate1 == HIGH)
+  {
+   
+    digitalWrite (positive_dc,HIGH);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,HIGH);
+    digitalWrite (negitive_dc2,LOW);
+    delay(3000);
+    digitalWrite (positive_dc,LOW);
+    digitalWrite (negitive_dc,LOW);
+    digitalWrite (positive_dc2,LOW);
+    digitalWrite (negitive_dc2,LOW);
+  }
+    else
   {
     digitalWrite (positive_dc,LOW);
     digitalWrite (negitive_dc,LOW);
-  	digitalWrite (positive_dc2,LOW);
+    digitalWrite (positive_dc2,LOW);
     digitalWrite (negitive_dc2,LOW);
   }
   //reverse
@@ -56,7 +96,7 @@ void loop ()
     digitalWrite (negitive_dc,HIGH);
     digitalWrite (positive_dc2,LOW);
     digitalWrite (negitive_dc2,HIGH);
- 	delay(2000);
+ 	delay(3000);
     digitalWrite (positive_dc,LOW);
     digitalWrite (negitive_dc,LOW);
   	digitalWrite (positive_dc2,LOW);
@@ -76,7 +116,7 @@ void loop ()
     digitalWrite (negitive_dc,LOW);
     digitalWrite (positive_dc2,LOW);
     digitalWrite (negitive_dc2,LOW);//change to high if you want to on the spot turn
-  	delay(2000);
+  	delay(3000);
     digitalWrite (positive_dc,LOW);
     digitalWrite (negitive_dc,LOW);
   	digitalWrite (positive_dc2,LOW);
@@ -96,7 +136,7 @@ void loop ()
     digitalWrite (negitive_dc,LOW);//change to high if you want to on the spot turn
     digitalWrite (positive_dc2,HIGH);
     digitalWrite (negitive_dc2,LOW);
-  	delay(2000);
+  	delay(3000);
     digitalWrite (positive_dc,LOW);
     digitalWrite (negitive_dc,LOW);
   	digitalWrite (positive_dc2,LOW);
