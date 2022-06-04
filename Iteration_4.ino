@@ -206,92 +206,93 @@ void loop()
       analogWrite(backward2,0);
     }
 //IR control set
-  if (receiver.decode(&output)) {
-    unsigned int value = output.value;
-    switch(value) {
-      case Next_button:
-        analogWrite(9,200);
-        delay(300);
-        analogWrite(9,225);
-        delay(300);
-        analogWrite(9,255);
-        delay(300);
-        digitalWrite(9,LOW);
-        analogWrite(forward,255);
-        analogWrite(forward2,255);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        delay(3000);
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        break;
-        
-      case Prev_button:
-        analogWrite(9,255);
-        delay(300);
-        analogWrite(9,225);
-        delay(300);
-        analogWrite(9,200);
-        delay(300);
-        digitalWrite(9,LOW);
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,255);
-        analogWrite(backward2,255);
-        delay(3000);
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        break;
-        
-      case left_button: 
-        analogWrite(9,200);
-        delay(300);
-        digitalWrite(9,LOW);
-        delay(300);
-        analogWrite(9,200);
-        delay(300);
-        digitalWrite(9,LOW);
-        analogWrite(forward,255);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        delay(3000);
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        break;
-        
-      case right_button:
-        analogWrite(9,200);
-        delay(300);
-        digitalWrite(9,LOW);
-        delay(300);
-        analogWrite(9,200);
-        delay(300);
-        digitalWrite(9,LOW);
-        analogWrite(forward,0);
-        analogWrite(forward2,255);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        delay(3000);
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        break;
-        
-      case Stop_button:
-        analogWrite(forward,0);
-        analogWrite(forward2,0);
-        analogWrite(backward,0);
-        analogWrite(backward2,0);
-        break;
-    }
-    receiver.resume();
-  }
-}
+   if (distance >18) {
+    Serial.println(distance);
+    if (receiver.decode(&output)) {
+      unsigned int value = output.value;
+      switch(value) {
+        case Next_button:
+          analogWrite(9,200);
+          delay(300);
+          analogWrite(9,225);
+          delay(300);
+          analogWrite(9,255);
+          delay(300);
+          digitalWrite(9,LOW);
+          analogWrite(forward,255);
+          analogWrite(forward2,255);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          delay(3000);
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          break;
+          
+        case Prev_button:
+          analogWrite(9,255);
+          delay(300);
+          analogWrite(9,225);
+          delay(300);
+          analogWrite(9,200);
+          delay(300);
+          digitalWrite(9,LOW);
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,255);
+          analogWrite(backward2,255);
+          delay(3000);
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          break;
+          
+        case left_button: 
+          analogWrite(9,200);
+          delay(300);
+          digitalWrite(9,LOW);
+          delay(300);
+          analogWrite(9,200);
+          delay(300);
+          digitalWrite(9,LOW);
+          analogWrite(forward,255);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          delay(3000);
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          break;
+          
+        case right_button:
+          analogWrite(9,200);
+          delay(300);
+          digitalWrite(9,LOW);
+          delay(300);
+          analogWrite(9,200);
+          delay(300);
+          digitalWrite(9,LOW);
+          analogWrite(forward,0);
+          analogWrite(forward2,255);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          delay(3000);
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          break;
+          
+        case Stop_button:
+          analogWrite(forward,0);
+          analogWrite(forward2,0);
+          analogWrite(backward,0);
+          analogWrite(backward2,0);
+          break;
+      }
+      receiver.resume();
+    }}}
